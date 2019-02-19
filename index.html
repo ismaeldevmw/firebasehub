@@ -10,7 +10,7 @@
 </head>
 <body>
     
-    <nav>
+    <nav class="fadeInDown">
         <figure><img src="https://firebasemx.com/static/media/firemx.018fbe39.png" alt=""></figure>
         <div class="categories">
             <button>
@@ -47,11 +47,11 @@
             </span>
         </div>
     </nav>
-    <section class="search">
-        <input id="searching" placeholder="Search for Memes you love" type="text">
+    <section class="search fadeInUp">
+        <input placeholder="Search for Memes you love" type="text" id="searching">
         <img src="https://blog.airtable.com/content/images/2018/04/blockIconImages-2F3zZbh6x3QMSH6WqBjMGH_search-icon.png" alt="">
     </section>
-    <section id="results" class="results">
+    <section id="results" class="results fadeIn">
         <figure>
             <img src="https://media0.giphy.com/media/9JBKdsyIL61WM/200w.webp?cid=ecf05e475c66f1ff6c7a33746b5dc70a" alt="">
         </figure>
@@ -166,29 +166,27 @@
 
     <!-- Inputs -->
     <input accept="image/*" hidden id="file" type="file">
+
+
     <!-- Javascripts -->
+    <script src="https://www.gstatic.com/firebasejs/5.8.3/firebase.js"></script>
+    <script>
+    // Initialize Firebase
+    var config = {
+        apiKey: "AIzaSyC-cV2Gfi7ySlCZXal-e3HcB6qHWwx784o",
+        authDomain: "fir-hub-19552.firebaseapp.com",
+        databaseURL: "https://fir-hub-19552.firebaseio.com",
+        projectId: "fir-hub-19552",
+        storageBucket: "fir-hub-19552.appspot.com",
+        messagingSenderId: "277383464649"
+    };
+    firebase.initializeApp(config);
+    </script>
+
     <script
     src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
     integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E="
     crossorigin="anonymous"></script>
-
-    <!-- Aqui va Firebase -->
-
-<script src="https://www.gstatic.com/firebasejs/5.8.3/firebase.js"></script>
-<script>
-  // Initialize Firebase
-  var config = {
-    apiKey: "AIzaSyC4y_UiuUZI1GUaRxiJTT7iSMDahpwj_Bc",
-    authDomain: "nevermind-ad1ae.firebaseapp.com",
-    databaseURL: "https://nevermind-ad1ae.firebaseio.com",
-    projectId: "nevermind-ad1ae",
-    storageBucket: "nevermind-ad1ae.appspot.com",
-    messagingSenderId: "1077643302463"
-  };
-  firebase.initializeApp(config);
-</script>
-
     <script src="main.js"></script>
-
 </body>
 </html>

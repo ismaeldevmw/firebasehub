@@ -12,17 +12,20 @@ let src
 let user
 
 // FIREBASE INITIALIZE AND REFS
+
 let firestore = firebase.firestore()
 let memesRef = firestore.collection('memes')
 
 
 //FIREBASE AUX FUNCTIONS
+
 function writeMeme(object){
     let id = memesRef.doc().id
     memesRef.doc(id).set(object)
 }
 
 // consultas
+
 function searchFor(string){
     console.log("buscando", string)
     memesRef.where('tags', "==", string)
@@ -42,13 +45,14 @@ function searchFor(string){
 
 
 //FIREBASE LOGIN
+
 function gmailLogin(){
     var provider = new firebase.auth.GoogleAuthProvider()
     firebase.auth()
         .signInWithPopup(provider)
         .then(function(result) {
             user = result.user
-            setUser()
+            setUser(user)
     })
 
 }
@@ -58,26 +62,29 @@ function gmailLogin(){
 // FIREBASE LISTENERS
 
 //USER LISTENER
+
 firebase.auth().onAuthStateChanged(function(u){
     if(!u) console.log("Recuerda loguearte para publicar")
    else {
         user = u
-        setUser()
+        setUser(user)
     }
 })
 
 //MEMES LISTENER
+
 memesRef.onSnapshot(function(snap){
     snap.forEach(function(doc){
         drawResults([doc.data()])
     })
 })
-//
+
 
 // SEARCH FOR MEMES
 //
 
 //defaults listeners
+
 searching.addEventListener('keydown', function(e){
     if(e.key == "Enter"){
         searchFor(e.target.value)
@@ -112,7 +119,8 @@ subirButton.addEventListener('click', function(){
 
     //after upload
     clearModal()
-    //drawResults([meme])
+    //FIREBASE
+    // drawResults([meme])
     
 })
 
@@ -156,7 +164,7 @@ function drawResults(array){
     })
 }
 
-function setUser(){
+function setUser(user){
     if(!user) {
         document.querySelector('.user').innerHTML = `
         <img id="photoURL" src="https://media.giphy.com/avatars/default3.gif" alt="">
@@ -181,6 +189,6 @@ function setUser(){
 
 function logout(){
     user = undefined
-    setUser()
+    setUser(user)
     firebase.auth().signOut()
 }
